@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+{% load oldFilter %}
+
+
+{% block title %}{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/userList.css' %}" rel="stylesheet">
+<link href="{% static 'css/addUser.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+
+<div class="container">
+    <form role="form" class="pure-form pure-form-aligned" method="post" action="{% url 'Users.views.createUser' %}">
+        {% csrf_token %}
+        <div class="form-style">
+            <form>
+                <fieldset><legend>Personal</legend>
+
+                    <label for="field1"><span>UserName <span class="required">*</span></span><input type="text" class="input-field" name="username"  value=""></label>
+                    <label for="field2"><span>Password <span class="required">*</span></span><input type="password" class="input-field" name="password" value=""  /></label>
+                    <label for="field3"><span>Birthday <span class="required">*</span></span><input type="date" class="input-field" name="birth_date" value={{birth_date | date:"Y-m-d"}} /></label>
+                    <label for="field4"><span>RandomId <span class="required">*</span></span><input type="number" class="input-field" name="randomId" value={{randomId}} /></label>
+
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '{% url 'list'  %}' ">User List</button>
+                </fieldset>
+
+            </form>
+        </div>
+    </form>
+
+</div>
+
+{% endblock main %}
+
+{% endblock body %}
+
+

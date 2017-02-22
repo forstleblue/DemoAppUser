@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+{% load oldFilter %}
+
+
+{% block title %}{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/userList.css' %}" rel="stylesheet">
+<link href="{% static 'css/addUser.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+{% block main %}  
+<div class="container">
+
+	<button type = "button" onclick=" location.href='{% url 'add' %}' " class = "btn btn-primary">Add User</button>
+
+	<button type = "button" onclick=" location.href='{% url 'downloadUserlist' %}' " class = "btn btn-primary">Download Userlist</button>
+
+	{% if list %}
+	<div class="tablView" style="overflow:scroll; height:400px;overflow:auto">
+		<table class="userTable" border="1" width="550" height="150">
+			<caption>User List</caption>
+			<tr>
+				<th>UserName</th>
+				<th>Birthday</th>
+				<th>Eligible</th>
+				<th>RandomId</th>
+				<th>BizzFuzz</th>
+				<th> Edit </th>
+				<th> Delete </th>
+			</tr>
+			
+			{% for user in list %}
+			<tr>
+				<td>{{user.username}}</td>
+				<td>{{user.birth_date|date:'m/d/Y'}}</td> 
+				<td>{{user.birth_date | oldRange}}</td>
+				<td>{{user.randomId}}</td>
+				<td>{{user.randomId | checkBizzFuzz}}</td>
+				
+				<td><button type="submit" onclick=" location.href = '{% url 'edit' user.id %}' " class="btn btn-primary">Edit</button></td>
+				<td><button type="button" onclick="location.href = '{% url 'delete' user.username %}' " class="btn btn-primary">Delete</button></td>
+			</tr>            
+			{% endfor %}
+			
+		</table>
+	</div>
+
+	{% else %}
+		<h2>There is not user data now</h2>
+	{% endif %}
+	<div class="buttonView">
+
+		
+		
+
+	</div>
+
+</div>
+{% endblock main %}
+
+{% endblock body %}
+
+
