@@ -13,3 +13,10 @@ class User(AbstractUser):
 	
   
 In this way I extend the user, when use this method, you should create models.py at first after create the project.
+
+To run this app in terminal or console widnow
+go to the this app script directory run following command
+
+python manage.py runserver
+
+The log in redirect page is localhost:8000/users/
