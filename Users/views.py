@@ -23,12 +23,12 @@ def addUser(request):
 
 	#import pdb; pdb.set_trace()
 	randomId = random.randint(1, 100)
-	birth_date = datetime.today().date()
+	birthday = datetime.today().date()
 	context_dict = {}
 	context_dict['username'] = ""
 	context_dict['password'] = ""
 	context_dict['randomId'] = randomId
-	context_dict['birth_date'] = birth_date
+	context_dict['birthday'] = birthday
 	
 	return render(request, 'Users/add.html', context_dict)
 
@@ -52,7 +52,7 @@ def downloadUserlist(request):
 	writer.writerow(header)
 	for item in allUser:
 		
-		row = [item.username, item.birth_date , oldRange(item.birth_date) , item.randomId, checkBizzFuzz(item.randomId)]
+		row = [item.username, item.birthday , oldRange(item.birthday) , item.randomId, checkBizzFuzz(item.randomId)]
 		writer.writerow(row)
 
 		#import pdb; pdb.set_trace()		
@@ -70,7 +70,7 @@ def updateUser(request, val):
 	
 	if form.is_valid():
 
-		oldUser.birth_date = form.cleaned_data.get('birth_date')
+		oldUser.birthday = form.cleaned_data.get('birthday')
 		oldUser.randomId = form.cleaned_data.get('randomId')	
 		oldUser.username = form.cleaned_data.get('username')		
 		oldUser.password = form.cleaned_data.get('password')
@@ -107,7 +107,7 @@ def createUser(request):
 
 			user = User()
 			
-			user.birth_date = form.cleaned_data.get('birth_date')
+			user.birthday = form.cleaned_data.get('birthday')
 			user.randomId = form.cleaned_data.get('randomId')	
 			user.username = form.cleaned_data.get('username')		
 			user.password = form.cleaned_data.get('password')							

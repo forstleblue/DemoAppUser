@@ -18,10 +18,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from Users import views as main_view
 from django.contrib.auth import views as auth_views
-
+from authentication import views as signup_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('Users.urls')),
-
+    url(r'^login/',auth_views.login, {'template_name': 'Users/login.html'}, name='login'),
+    url(r'^signup/', signup_views.signup, name='signup'),
+    url(r'^logout/', auth_views.logout, {'next_page': '/login/'},  name='logout'),
 ]

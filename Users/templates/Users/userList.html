@@ -37,8 +37,8 @@
 			{% for user in list %}
 			<tr>
 				<td>{{user.username}}</td>
-				<td>{{user.birth_date|date:'m/d/Y'}}</td> 
-				<td>{{user.birth_date | oldRange}}</td>
+				<td>{{user.birthday|date:'m/d/Y'}}</td> 
+				<td>{{user.birthday | oldRange}}</td>
 				<td>{{user.randomId}}</td>
 				<td>{{user.randomId | checkBizzFuzz}}</td>
 				

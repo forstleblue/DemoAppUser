@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):	
 	randomId= models.IntegerField()  
-	birth_date = models.DateField(null=True, blank=True)
+	birthday = models.DateField(null=True, blank=True)
 	
   
 In this way I extend the user, when use this method, you should create models.py at first after create the project.
