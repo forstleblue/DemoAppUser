@@ -3,7 +3,7 @@ from django.contrib import admin
 from Users import views
 
 urlpatterns = [    
-	url(r'^admin', admin.site.urls),
+	
 	url(r'^$', views.listAllUser, name='list'),
 	url(r'^add/', views.addUser, name='add'),
 	url(r'^(?P<userId>\d+)/edit/', views.editUser, name='edit'),

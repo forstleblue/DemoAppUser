@@ -25,7 +25,7 @@ SECRET_KEY = '9qw!a5kq4*v0m*d-__it4j0-tgm91su*72g5l)$jvi6u%8=zx*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     
     'Users',
     'authentication',
+    'core',
+    'feeds',
+   
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -88,6 +92,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -120,10 +125,25 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 AUTH_USER_MODEL = 'Users.User'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+print MEDIA_ROOT
+MEDIA_URL = '/media/'
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
+
+LOGIN_REDIRECT_URL = '/settings/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+FILE_UPLOAD_TEMP_DIR = '/tmp/'
+FILE_UPLOAD_PERMISSIONS = 0o644

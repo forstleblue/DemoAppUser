@@ -3,55 +3,58 @@
 {% load oldFilter %}
 
 
-{% block title %}{% endblock %}
-
-{% block head %}
-<link href="{% static 'css/userList.css' %}" rel="stylesheet">
-<link href="{% static 'css/addUser.css' %}" rel="stylesheet">
-{% endblock %}
-
-
-{% block body %}
+{% block title %}User List{% endblock %}
 
 {% block main %}  
-<div class="container">
 
-	<button type = "button" onclick=" location.href='{% url 'add' %}' " class = "btn btn-primary">Add User</button>
+<div class="container">
+	<div class="page-header">
+		<h1>{% trans 'User List' %}</h1>
+	</div>
+
+	<!--<button type = "button" onclick=" location.href='{% url 'add' %}' " class = "btn btn-primary">Add User</button>  -->
 
 	<button type = "button" onclick=" location.href='{% url 'downloadUserlist' %}' " class = "btn btn-primary">Download Userlist</button>
 
 	{% if list %}
-	<div class="tablView" style="overflow:scroll; height:400px;overflow:auto">
-		<table class="userTable" border="1" width="550" height="150">
-			<caption>User List</caption>
+<!--	<div class="tablView" style="overflow:scroll; height:400px;overflow:auto"> -->
+		<table class="table table-striped"s>
+			
 			<tr>
 				<th>UserName</th>
+				<th>FirstName</th>
+				<th>LastName</th>
 				<th>Birthday</th>
+				<th>Email</th>
 				<th>Eligible</th>
 				<th>RandomId</th>
 				<th>BizzFuzz</th>
-				<th> Edit </th>
-				<th> Delete </th>
+
+			<!--	<th> Edit </th>
+				<th> Delete </th>  -->
 			</tr>
 			
 			{% for user in list %}
 			<tr>
 				<td>{{user.username}}</td>
+				<td>{{user.first_name}}</td>
+				<td>{{user.last_name}}</td>
 				<td>{{user.birthday|date:'m/d/Y'}}</td> 
+				<td>{{user.email}}</td>
 				<td>{{user.birthday | oldRange}}</td>
 				<td>{{user.randomId}}</td>
 				<td>{{user.randomId | checkBizzFuzz}}</td>
 				
-				<td><button type="submit" onclick=" location.href = '{% url 'edit' user.id %}' " class="btn btn-primary">Edit</button></td>
-				<td><button type="button" onclick="location.href = '{% url 'delete' user.username %}' " class="btn btn-primary">Delete</button></td>
+			<!--	<td><button type="submit" onclick=" location.href = '{% url 'edit' user.id %}' " class="btn btn-primary">Edit</button></td>
+				<td><button type="button" onclick="location.href = '{% url 'delete' user.username %}' " class="btn btn-primary">Delete</button></td> -->
 			</tr>            
 			{% endfor %}
 			
 		</table>
-	</div>
+	<!--</div> -->
 
 	{% else %}
-		<h2>There is not user data now</h2>
+	<h2>There is not user data now</h2>
 	{% endif %}
 	<div class="buttonView">
 
@@ -63,6 +66,5 @@
 </div>
 {% endblock main %}
 
-{% endblock body %}
 
 
