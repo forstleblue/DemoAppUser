@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Audiowide);
 
 body {
-  padding-top: 70px;
+  padding-top: 40px;
+  background-color: red;
 }
 
 header .navbar-brand {

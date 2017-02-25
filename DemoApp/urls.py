@@ -32,6 +32,6 @@ urlpatterns = [
     url(r'^settings/picture/$', core_views.picture, name='picture'),
     url(r'^settings/password/$', core_views.password, name='password'), 
     url(r'^feeds/', include('feeds.urls')),
-
+    url(r'^blog/', include('blog.urls')),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
 ]

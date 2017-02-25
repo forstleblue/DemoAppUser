@@ -1,0 +1,11 @@
+.blogs{
+	margin-top: 2em;
+}
+
+.remove-blog {
+  color: #bbbbbb; 
+  font-size: .8em; 
+  padding-top: .2em;
+  float: right;
+  cursor: pointer;
+}
