@@ -19,4 +19,4 @@ go to the this app script directory run following command
 
 python manage.py runserver
 
-The log in redirect page is localhost:8000/users/
+The log in redirect page is localhost:8000/feeds/
