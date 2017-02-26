@@ -9,7 +9,7 @@ def signup(request):
 		form = SignUpForm(request.POST)
 
 		if not form.is_valid():
-			return render(request, 'authentication/signup.html',
+			return render(request, 'signup.html',
 						  {'form': form})
 
 		else:
@@ -27,8 +27,8 @@ def signup(request):
 			welcome_post = '{0} has joined the network.'.format(user.username,
 																user.username)
 			
-			return redirect('list')
+			return redirect('feeds')
 
 	else:
-		return render(request, 'authentication/signup.html',
+		return render(request, 'signup.html',
 					  {'form': SignUpForm()})

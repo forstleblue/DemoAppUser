@@ -10,9 +10,9 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
+    1. Add an import:  from board import urls as board_urls
     2. Import the include() function: from django.conf.urls import url, include
-    3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+    3. Add a URL to urlpatterns:  url(r'^board/', include(board_urls))
 """
 from django.conf.urls import url, include
 from django.contrib import admin
@@ -20,6 +20,7 @@ from Users import views as main_view
 from django.contrib.auth import views as auth_views
 from authentication import views as signup_views
 from core import views as core_views
+from board import views as board_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('Users.urls')),
@@ -32,6 +33,6 @@ urlpatterns = [
     url(r'^settings/picture/$', core_views.picture, name='picture'),
     url(r'^settings/password/$', core_views.password, name='password'), 
     url(r'^feeds/', include('feeds.urls')),
-    url(r'^blog/', include('blog.urls')),
+    url(r'^(?P<username>[^/]+)/board/', include('board.urls')),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
 ]

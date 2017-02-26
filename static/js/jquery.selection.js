@@ -2,7 +2,7 @@
  * jQuery.selection - jQuery Plugin
  *
  * Copyright (c) 2010-2014 IWASAKI Koji (@madapaja).
- * http://blog.madapaja.net/
+ * http://board.madapaja.net/
  * Under The MIT License
  *
  * Permission is hereby granted, free of charge, to any person obtaining

@@ -25,12 +25,11 @@ def home(request):
     if request.user.is_authenticated():
         return feeds(request)
     else:
-        return render(request, 'core/cover.html')
+        return render(request, 'cover.html')
 
 def settings(request):
-    user = request.user
+    user = request.user    
     
-    #import pdb; pdb.set_trace()
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
@@ -53,8 +52,8 @@ def settings(request):
             'location': user.profile.location
             })
         #import pdb; pdb.set_trace()
-    
-    return render(request, 'core/settings.html', {'form': form})
+    #import pdb; pdb.set_trace()
+    return render(request, 'settings.html', {'form': form, 'username': user.username})
 
 def password(request):
     user = request.user
@@ -72,10 +71,11 @@ def password(request):
     else:
         form = ChangePasswordForm(instance=user)
 
-    return render(request, 'core/password.html', {'form': form})
+    return render(request, 'password.html', {'form': form, 'username':request.user.username})
    
 def picture(request):
     uploaded_picture = False
+    #import pdb; pdb.set_trace()
     try:
         if request.GET.get('upload_picture') == 'uploaded':
             uploaded_picture = True
@@ -84,7 +84,7 @@ def picture(request):
         pass
 
     return render(request, 'core/picture.html',
-                  {'uploaded_picture': uploaded_picture})
+                  {'uploaded_picture': uploaded_picture, 'username':request.user.username})
 
 
 def upload_picture(request):
@@ -122,7 +122,7 @@ def profile(request, username):
     from_feed = -1
     if feeds:
         from_feed = feeds[0].id
-    return render(request, 'core/profile.html', {
+    return render(request, 'profile.html', {
         'page_user': page_user,
         'feeds': feeds,
         'from_feed': from_feed,

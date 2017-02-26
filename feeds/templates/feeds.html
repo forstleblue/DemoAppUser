@@ -48,7 +48,7 @@
           </div>
           <ul class="stream">
             {% for feed in feeds %}
-              {% include 'feeds/partial_feed.html' with feed=feed %}
+              {% include 'partial_feed.html' with feed=feed %}
             {% endfor %}
           </ul>
           <div class="load">

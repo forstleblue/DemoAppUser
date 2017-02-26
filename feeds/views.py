@@ -25,16 +25,17 @@ def feeds(request):
         from_feed = feeds[0].id
 
     #import pdb; pdb.set_trace()
-    return render(request, 'feeds/feeds.html', {
+    return render(request, 'feeds.html', {
         'feeds': feeds,
         'from_feed': from_feed,
         'page': 1,
+        'username': request.user.username,
         })
 
 
 def feed(request, pk):
     feed = get_object_or_404(Feed, pk=pk)
-    return render(request, 'feeds/feed.html', {'feed': feed})
+    return render(request, 'feed.html', {'feed': feed})
 
 
 @login_required
@@ -57,7 +58,7 @@ def load(request):
     csrf_token = (csrf(request)['csrf_token'])
     for feed in feeds:
         html = '{0}{1}'.format(html,
-                               render_to_string('feeds/partial_feed.html',
+                               render_to_string('partial_feed.html',
                                                 {
                                                     'feed': feed,
                                                     'user': request.user,
@@ -74,7 +75,7 @@ def _html_feeds(last_feed, user, csrf_token, feed_source='all'):
     html = ''
     for feed in feeds:
         html = '{0}{1}'.format(html,
-                               render_to_string('feeds/partial_feed.html',
+                               render_to_string('partial_feed.html',
                                                 {
                                                     'feed': feed,
                                                     'user': user,
@@ -142,13 +143,13 @@ def comment(request):
             feed.comment(user=user, post=post)
             user.profile.notify_commented(feed)
             user.profile.notify_also_commented(feed)
-        return render(request, 'feeds/partial_feed_comments.html',
+        return render(request, 'partial_feed_comments.html',
                       {'feed': feed})
 
     else:
         feed_id = request.GET.get('feed')
         feed = Feed.objects.get(pk=feed_id)
-        return render(request, 'feeds/partial_feed_comments.html',
+        return render(request, 'partial_feed_comments.html',
                       {'feed': feed})
 
 
@@ -173,7 +174,7 @@ def update(request):
 def track_comments(request):
     feed_id = request.GET.get('feed')
     feed = Feed.objects.get(pk=feed_id)
-    return render(request, 'feeds/partial_feed_comments.html', {'feed': feed})
+    return render(request, 'partial_feed_comments.html', {'feed': feed})
 
 
 @login_required

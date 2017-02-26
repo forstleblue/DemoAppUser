@@ -1,0 +1,15 @@
+
+<div class="col-md-4" board-id="{{ board.pk }}" csrf="{{ csrf_token }}">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<a href="{% url 'detailBoard' username=board.user.username boardid=board.id %}">{{board.title}}</a>		
+		</div>
+		<div class="panel-body" >
+			<span class="glyphicon glyphicon-remove remove-board" title="Click to remove this feed"></span>
+			{{board.content}}
+		</div>
+	</div>
+
+</div>
+

@@ -17,7 +17,7 @@ def listAllUser(request):
 	allUser = User.objects.order_by('-date_joined')
 	count = allUser.count()	
 	
-	return render(request, 'Users/userList.html', {'list':allUser})
+	return render(request, 'Users/userList.html', {'list':allUser, 'username':request.user.username})
 
 def addUser(request):
 

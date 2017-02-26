@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n %}
+{% load oldFilter %}
+
+
+{% block title %}User List{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/board.css' %}" rel="stylesheet">
+<script src="{% static 'js/board.js' %}"></script>
+{% endblock head %}
+
+{% block main %}  
+
+<div class="page-header">
+	<h1>{{board.content}}</h1>
+</div>
+
+{% endblock main %}
