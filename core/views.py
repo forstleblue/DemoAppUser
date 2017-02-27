@@ -14,7 +14,7 @@ from core.forms import ChangePasswordForm, ProfileForm
 from core.forms import ChangePasswordForm, ProfileForm
 from feeds.models import Feed
 from feeds.views import FEEDS_NUM_PAGES, feeds
-
+from django.contrib.auth.decorators import login_required
 from PIL import Image
 
 # Create your views here.
@@ -27,6 +27,7 @@ def home(request):
     else:
         return render(request, 'cover.html')
 
+@login_required
 def settings(request):
     user = request.user    
     

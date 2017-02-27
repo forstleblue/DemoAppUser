@@ -21,10 +21,11 @@ from django.contrib.auth import views as auth_views
 from authentication import views as signup_views
 from core import views as core_views
 from board import views as board_views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('Users.urls')),
-    url(r'^login/',auth_views.login, {'template_name': 'Users/login.html'}, name='login'),
+    url(r'^login/',auth_views.login, {'template_name': 'Users/login.html'},  name='login'),
     url(r'^signup/', signup_views.signup, name='signup'),
     url(r'^logout/', auth_views.logout, {'next_page': '/login/'},  name='logout'),
     url(r'^settings/$', core_views.settings, name='settings'),

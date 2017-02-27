@@ -4,12 +4,13 @@ from django.template.context_processors import csrf
 from django.template.loader import render_to_string
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseForbidden)
-
+from django.contrib.auth.decorators import login_required
 from board.models import Board 
 # Create your views here.
 
 BOARDS_NUM_PAGES = 10
 
+@login_required
 def boardhome(request, username):
 
 	all_boards = Board.get_boards()

@@ -140,7 +140,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/settings/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
