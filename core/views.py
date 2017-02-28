@@ -1,6 +1,6 @@
 import os
 
-
+from django.contrib.auth.views import login
 from django.conf import settings as django_settings
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -12,20 +12,13 @@ from django.shortcuts import get_object_or_404, redirect, render
 from core.forms import ChangePasswordForm, ProfileForm
 
 from core.forms import ChangePasswordForm, ProfileForm
+from Users.models import User
 from feeds.models import Feed
 from feeds.views import FEEDS_NUM_PAGES, feeds
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 
 # Create your views here.
-
-def home(request):
-
-    #import pdb; pdb.set_trace()
-    if request.user.is_authenticated():
-        return feeds(request)
-    else:
-        return render(request, 'cover.html')
 
 @login_required
 def settings(request):
@@ -55,6 +48,37 @@ def settings(request):
         #import pdb; pdb.set_trace()
     #import pdb; pdb.set_trace()
     return render(request, 'settings.html', {'form': form, 'username': user.username})
+
+@login_required
+def network(request):
+    users_list = User.objects.filter(is_active=True).order_by('username')
+    paginator = Paginator(users_list, 100)
+    page = request.GET.get('page')
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'network.html', {'users': users, 'username': request.user.username})
+
+@login_required
+def profile(request, username):
+
+    page_user = get_object_or_404(User, username=username)
+    all_feeds = Feed.get_feeds().filter(user=page_user)
+    paginator = Paginator(all_feeds, FEEDS_NUM_PAGES)
+    feeds = paginator.page(1)
+    from_feed = -1
+    if feeds:
+        from_feed = feeds[0].id
+    return render(request, 'profile.html', {
+        'page_user': page_user,
+        'feeds': feeds,
+        'from_feed': from_feed,
+        'page': 1,
+        'username': username
+        })
 
 def password(request):
     user = request.user
@@ -114,21 +138,6 @@ def upload_picture(request):
         print(e)
         return redirect('/settings/picture/')
 
-@login_required
-def profile(request, username):
-    page_user = get_object_or_404(User, username=username)
-    all_feeds = Feed.get_feeds().filter(user=page_user)
-    paginator = Paginator(all_feeds, FEEDS_NUM_PAGES)
-    feeds = paginator.page(1)
-    from_feed = -1
-    if feeds:
-        from_feed = feeds[0].id
-    return render(request, 'profile.html', {
-        'page_user': page_user,
-        'feeds': feeds,
-        'from_feed': from_feed,
-        'page': 1
-        })
 
 @login_required
 def save_uploaded_picture(request):

@@ -1,0 +1,11 @@
+.boards{
+	margin-top: 2em;
+}
+
+.remove-board {
+  color: #bbbbbb; 
+  font-size: .8em; 
+  padding-top: .2em;
+  float: right;
+  cursor: pointer;
+}

@@ -17,7 +17,7 @@
     <script src="{% static 'js/bootcamp.js' %}"></script>
     {% block head %}{% endblock %}
   </head>
-  <body style="padding-top: 40px">
+  <body>
     {% block body %}
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -41,8 +41,8 @@
                 <li><a href="{% url 'feeds'  %}">Feed</a></li>
                 <li><a href="{% url 'board' username %}">Board</a></li>
                 <li><a href="#">Articles</a></li>
-                <li><a href="#">Q&A</a></li>
-                <li><a href="#">Network</a></li>
+                <li><a href="{% url 'questions' %}">Q&A</a></li>
+                <li><a href="{% url 'network' %}">Network</a></li>
                
               </ul>
               {% if not hide_search %}

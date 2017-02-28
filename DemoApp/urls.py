@@ -25,7 +25,7 @@ from board import views as board_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('Users.urls')),
-    url(r'^login/',auth_views.login, {'template_name': 'Users/login.html'},  name='login'),
+    url(r'^login/',auth_views.login, {'template_name': 'Users/login.html', 'redirect_authenticated_user': True},  name='login'),
     url(r'^signup/', signup_views.signup, name='signup'),
     url(r'^logout/', auth_views.logout, {'next_page': '/login/'},  name='logout'),
     url(r'^settings/$', core_views.settings, name='settings'),
@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^settings/picture/$', core_views.picture, name='picture'),
     url(r'^settings/password/$', core_views.password, name='password'), 
     url(r'^feeds/', include('feeds.urls')),
+    url(r'^questions/', include('questions.urls')),
+    url(r'^network/$', core_views.network, name='network'),    
+    url(r'^network/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^(?P<username>[^/]+)/board/', include('board.urls')),
-    url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
 ]

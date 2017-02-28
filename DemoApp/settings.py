@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     'feeds',
     'board',
+    'questions',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -137,11 +138,15 @@ print MEDIA_ROOT
 MEDIA_URL = '/media/'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/settings/'
+LOGIN_REDIRECT_URL = '/feeds/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
