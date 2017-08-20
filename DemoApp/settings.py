@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    
+
     'Users',
     'authentication',
     'core',
@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 #"django.core.context_processors.request",
                 #"django.core.context_processors.media",
-              
+
             ],
         },
     },
@@ -134,7 +134,7 @@ AUTH_USER_MODEL = 'Users.User'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-print MEDIA_ROOT
+# print MEDIA_ROOT
 MEDIA_URL = '/media/'
 
 

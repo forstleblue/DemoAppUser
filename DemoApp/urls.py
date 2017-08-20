@@ -23,6 +23,7 @@ from core import views as core_views
 from board import views as board_views
 
 urlpatterns = [
+    url(r'^$', include('Users.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('Users.urls')),
     url(r'^login/',auth_views.login, {'template_name': 'Users/login.html', 'redirect_authenticated_user': True},  name='login'),
@@ -32,10 +33,10 @@ urlpatterns = [
     url(r'^settings/upload_picture/$', core_views.upload_picture, name='upload_picture'),
     url(r'^settings/save_uploaded_picture/$', core_views.save_uploaded_picture, name='save_uploaded_picture'),
     url(r'^settings/picture/$', core_views.picture, name='picture'),
-    url(r'^settings/password/$', core_views.password, name='password'), 
+    url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^feeds/', include('feeds.urls')),
     url(r'^questions/', include('questions.urls')),
-    url(r'^network/$', core_views.network, name='network'),    
+    url(r'^network/$', core_views.network, name='network'),
     url(r'^network/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^(?P<username>[^/]+)/board/', include('board.urls')),
 ]
