@@ -2,8 +2,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from Users import views
 
-urlpatterns = [    
-	
+urlpatterns = [
+
 	url(r'^$', views.listAllUser, name='list'),
 	url(r'^add/', views.addUser, name='add'),
 	url(r'^(?P<userId>\d+)/edit/', views.editUser, name='edit'),
