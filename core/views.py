@@ -22,8 +22,8 @@ from PIL import Image
 
 @login_required
 def settings(request):
-    user = request.user    
-    
+    user = request.user
+
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
@@ -97,7 +97,7 @@ def password(request):
         form = ChangePasswordForm(instance=user)
 
     return render(request, 'password.html', {'form': form, 'username':request.user.username})
-   
+
 def picture(request):
     uploaded_picture = False
     #import pdb; pdb.set_trace()
@@ -108,7 +108,7 @@ def picture(request):
     except Exception:
         pass
 
-    return render(request, 'core/picture.html',
+    return render(request, 'picture.html',
                   {'uploaded_picture': uploaded_picture, 'username':request.user.username})
 
 
